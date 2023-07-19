@@ -365,6 +365,7 @@ public class movieTicketingSystem extends Application {
                         char tempChar = check.charAt(i);
                         if (tempChar == ',')
                         {
+                            //found, break
                             validInput =true;
                             break;
                         }
