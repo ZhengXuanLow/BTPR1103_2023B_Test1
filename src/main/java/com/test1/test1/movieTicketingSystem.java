@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
@@ -43,7 +44,7 @@ public class movieTicketingSystem extends Application {
     RadioButton rb0900P = new RadioButton("09:00 PM");
 
     RadioButton rbPop1 = new RadioButton("RM 19.90");
-    RadioButton rbPop2 = new RadioButton("RM 19.90");
+    RadioButton rbPop2 = new RadioButton("RM 17.90");
     RadioButton rbPop3 = new RadioButton("RM 21.90");
 
 
@@ -51,6 +52,9 @@ public class movieTicketingSystem extends Application {
     public void start(Stage stage) throws IOException {
         BorderPane border = new BorderPane();
         Scene scene = new Scene(border);
+
+        //Set the window cant be resize by user
+        stage.setResizable(false);
 
         //Insert all the methods
         VBox mainBox  = new VBox(movieBox(),experienceHBox(),sessionHBox(),seatsBox(),fnbBox(),submitHBox());
@@ -154,36 +158,44 @@ public class movieTicketingSystem extends Application {
 
     public HBox fnbBox()
     {
+        GridPane grid = new GridPane();
         //Create a Label ("Food & Beverage"), set padding.
         Label fnbLabel = new Label("Food & Beverage");
         fnbLabel.setPadding(new Insets(90,10,5,0));
 
-        //Setting the image, imageview, size, label and radiobutton, collet into a VBox
+        //Setting the image, imageview, size, label and radiobutton, collet into a Grid
         Image popcorn1Image = new Image(movieTicketingSystem.class.getResource("popcorn1.png").toString());
         ImageView popcorn1ImageView = new ImageView(popcorn1Image);
         popcorn1ImageView.setFitHeight(183);
         popcorn1ImageView.setFitWidth(261);
         Label popcorn1Label = new Label("Royal Popcorn Combo - Member Special");
-        VBox pop1 = new VBox(popcorn1ImageView,popcorn1Label,rbPop1);
-        pop1.setPadding(new Insets(0,10,0,0));
+        grid.add(popcorn1ImageView,0,0,1,1);
+        grid.add(popcorn1Label,0,1,1,1);
+        grid.add(rbPop1,0,2,1,1);
 
-        //Setting the image, imageview, size, label and radiobutton, collet into a VBox
+
+        //Setting the image, imageview, size, label and radiobutton, collet into a Grid
         Image popcorn2Image = new Image(movieTicketingSystem.class.getResource("popcorn2.png").toString());
         ImageView popcorn2ImageView = new ImageView(popcorn2Image);
         popcorn2ImageView.setFitHeight(183);
         popcorn2ImageView.setFitWidth(261);
         Label popcorn2Label = new Label("Royal Popcorn");
-        VBox pop2 = new VBox(popcorn2ImageView,popcorn2Label,rbPop2);
-        pop2.setPadding(new Insets(0,10,0,0));
+        grid.add(popcorn2ImageView,1,0,1,1);
+        grid.add(popcorn2Label,1,1,1,1);
+        grid.add(rbPop2,1,2,1,1);
 
-        //Setting the image, imageview, size, label and radiobutton, collet into a VBox
+        //Setting the image, imageview, size, label and radiobutton, collet into a Grid
         Image popcorn3Image = new Image(movieTicketingSystem.class.getResource("popcorn3.png").toString());
         ImageView popcorn3ImageView = new ImageView(popcorn3Image);
         popcorn3ImageView.setFitHeight(183);
         popcorn3ImageView.setFitWidth(261);
         Label popcorn3Label = new Label("Royal Popcorn Combo");
-        VBox pop3 = new VBox(popcorn3ImageView,popcorn3Label,rbPop3);
-        pop3.setPadding(new Insets(0,10,0,0));
+        grid.add(popcorn3ImageView,2,0,1,1);
+        grid.add(popcorn3Label,2,1,1,1);
+        grid.add(rbPop3,2,2,1,1);
+
+        grid.setHgap(10);
+        grid.setVgap(10);
 
         //Set the toggle group
         ToggleGroup tgPopcorn = new ToggleGroup();
@@ -192,8 +204,8 @@ public class movieTicketingSystem extends Application {
         rbPop3.setToggleGroup(tgPopcorn);
 
         //Collect the items into a HBox
-        HBox fnbHBox = new HBox(fnbLabel,pop1,pop2,pop3);
-        fnbHBox.setPadding(new Insets(15,10,15,10));
+        HBox fnbHBox = new HBox(fnbLabel,grid);
+        fnbHBox.setPadding(new Insets(15,10,15,15));
         return fnbHBox;
     }
 
@@ -441,6 +453,51 @@ public class movieTicketingSystem extends Application {
         total = Double.parseDouble(riggitMalaysia);
         return total;
     }
+
+    //    public HBox fnbBox()
+//    {
+//        //Create a Label ("Food & Beverage"), set padding.
+//        Label fnbLabel = new Label("Food & Beverage");
+//        fnbLabel.setPadding(new Insets(90,10,5,0));
+//
+//        //Setting the image, imageview, size, label and radiobutton, collet into a VBox
+//        Image popcorn1Image = new Image(movieTicketingSystem.class.getResource("popcorn1.png").toString());
+//        ImageView popcorn1ImageView = new ImageView(popcorn1Image);
+//        popcorn1ImageView.setFitHeight(183);
+//        popcorn1ImageView.setFitWidth(261);
+//        Label popcorn1Label = new Label("Royal Popcorn Combo - Member Special");
+//        VBox pop1 = new VBox(popcorn1ImageView,popcorn1Label,rbPop1);
+//        pop1.setPadding(new Insets(0,10,0,0));
+//
+//        //Setting the image, imageview, size, label and radiobutton, collet into a VBox
+//        Image popcorn2Image = new Image(movieTicketingSystem.class.getResource("popcorn2.png").toString());
+//        ImageView popcorn2ImageView = new ImageView(popcorn2Image);
+//        popcorn2ImageView.setFitHeight(183);
+//        popcorn2ImageView.setFitWidth(261);
+//        Label popcorn2Label = new Label("Royal Popcorn");
+//        VBox pop2 = new VBox(popcorn2ImageView,popcorn2Label,rbPop2);
+//        pop2.setPadding(new Insets(0,10,0,0));
+//
+//        //Setting the image, imageview, size, label and radiobutton, collet into a VBox
+//        Image popcorn3Image = new Image(movieTicketingSystem.class.getResource("popcorn3.png").toString());
+//        ImageView popcorn3ImageView = new ImageView(popcorn3Image);
+//        popcorn3ImageView.setFitHeight(183);
+//        popcorn3ImageView.setFitWidth(261);
+//        Label popcorn3Label = new Label("Royal Popcorn Combo");
+//        VBox pop3 = new VBox(popcorn3ImageView,popcorn3Label,rbPop3);
+//        pop3.setPadding(new Insets(0,10,0,0));
+//
+//        //Set the toggle group
+//        ToggleGroup tgPopcorn = new ToggleGroup();
+//        rbPop1.setToggleGroup(tgPopcorn);
+//        rbPop2.setToggleGroup(tgPopcorn);
+//        rbPop3.setToggleGroup(tgPopcorn);
+//
+//        //Collect the items into a HBox
+//        HBox fnbHBox = new HBox(fnbLabel,pop1,pop2,pop3);
+//        fnbHBox.setPadding(new Insets(15,10,15,10));
+//        return fnbHBox;
+//    }
 
 }
 
