@@ -454,6 +454,7 @@ public class movieTicketingSystem extends Application {
         return total;
     }
 
+    //Used HBOX but not GRID, redo
     //    public HBox fnbBox()
 //    {
 //        //Create a Label ("Food & Beverage"), set padding.
